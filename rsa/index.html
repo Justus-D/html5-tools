@@ -38,6 +38,11 @@
 
 
 	<div class="page-header">
+		<h1>Schl&uuml;ssel generieren</h1>
+	</div>
+
+
+	<div class="page-header">
 		<h2>Schritt 1</h2>
 	</div>
 
@@ -47,14 +52,14 @@
 			<div class="form-group col-md-4 has-warning" id="p-div">
 				<div class="input-group">
 					<span class="input-group-addon">p</span>
-					<input type="number" class="form-control" placeholder="Primzahl" aria-describedby="p-help" id="p-input" onload="checkPQ('p')" onkeyup="checkPQ('p')" pattern="[0-9]">
+					<input type="number" class="form-control" placeholder="Primzahl" aria-describedby="p-help" id="p-input" onload="checkPQ('p')" onkeyup="checkPQ('p')" pattern="[0-9]" value="5">
 				</div>
 				<label class="help-block" id="p-help">Gib eine Primzahl ein.</label>
 			</div>
 			<div class="form-group col-md-4 has-warning" id="q-div">
 				<div class="input-group">
 					<span class="input-group-addon">q</span>
-					<input type="number" class="form-control" placeholder="Primzahl" aria-describedby="q-help" id="q-input" onload="checkPQ('q')" onkeyup="checkPQ('q')" pattern="[0-9]">
+					<input type="number" class="form-control" placeholder="Primzahl" aria-describedby="q-help" id="q-input" onload="checkPQ('q')" onkeyup="checkPQ('q')" pattern="[0-9]" value="11">
 				</div>
 				<label class="help-block" id="q-help">Gib eine Primzahl ein.</label>
 			</div>
@@ -64,17 +69,17 @@
 						<h3 class="panel-title">Primzahlengenerator</h3>
 					</div>
 					<div class="panel-body">
-						<div style="display: inline-flex; margin-bottom: 12px;">
-							<div class="input-group" style="width: 100%;">
+						<div style="display: inline-flex; margin-bottom: 12px; width: 100%;">
+							<div class="input-group" style="width: 48%;">
 								<span class="input-group-addon" id="prime-gen-start-desc">Start</span>
-								<input type="number" class="form-control" placeholder="5" aria-describedby="prime-gen-start-desc" id="prime-gen-start-input">
+								<input type="number" class="form-control" placeholder="e.g. 5" aria-describedby="prime-gen-start-desc" id="prime-gen-start-input">
 							</div>&nbsp;&nbsp;&nbsp;
-							<div class="input-group" style="width: 100%;">
+							<div class="input-group" style="width: 48%;">
 								<span class="input-group-addon" id="prime-gen-anzahl-desc">Anzahl</span>
-								<input type="number" class="form-control" placeholder="2" aria-describedby="prime-gen-anzahl-desc" id="prime-gen-anzahl-input">
+								<input type="number" class="form-control" placeholder="e.g. 2" aria-describedby="prime-gen-anzahl-desc" id="prime-gen-anzahl-input">
 							</div>
 						</div>
-						<textarea class="form-control" rows="3" id="prime-gen-output" placeholder="5&#10;7"></textarea>
+						<textarea class="form-control" rows="3" id="prime-gen-output" placeholder="Output"></textarea>
 						<button type="button" class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="genPrimeForm();">Generieren</button>
 					</div>
 				</div>
@@ -86,10 +91,227 @@
 	<div class="page-header">
 		<h2>Schritt 2</h2>
 	</div>
-	<p>Als n&auml;chstes berechnen wir die Zahl <b>n</b>, indem wir die Zahlen <b>p</b> und <b>q</b> multiplizieren.</p>
+	<div class="row">
+		<div class="col-md-8">
+			<p>Als n&auml;chstes berechnen wir die Zahl <code>n</code>, indem wir die Zahlen <code>p</code> und <code>q</code> multiplizieren. <code>p * q = n</code></p>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title"><b>N</b> berechnen</h3>
+				</div>
+				<div class="panel-body">
+					<div style="display: inline-flex; margin-bottom: 12px; width: 100%;">
+						<div class="input-group" style="width: 48%;">
+							<span class="input-group-addon" id="calc-n-p-desc">p</span>
+							<input type="number" class="form-control" placeholder="p" aria-describedby="calc-n-p-desc" id="s2-p" value="5">
+						</div>&nbsp;&nbsp;&nbsp;
+						<div class="input-group" style="width: 48%;">
+							<span class="input-group-addon" id="calc-n-q-desc">q</span>
+							<input type="number" class="form-control" placeholder="q" aria-describedby="calc-n-q-desc" id="s2-q" value="11">
+						</div>
+					</div>
+					<div class="input-group" style="width: 100%;">
+						<span class="input-group-addon" id="calc-n-n-desc">N</span>
+						<input type="number" class="form-control" placeholder="N" aria-describedby="calc-n-n-desc" id="s2-n">
+					</div>
+					<button type="button" class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="formCalcN();">Berechnen</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	<p>Nun wird die Zahl e erzeugt. Dazu sucht man, wann der gr&ouml;&szlig;te gemeinsame Teiler von Phi(n) = 1 ist.</p>
 
+	<div class="page-header">
+		<h2>Schritt 3</h2>
+	</div>
+	<div class="row">
+		<div class="col-md-7">
+			<p>Nun wird die Zahl e bestimmt. Dies geht, indem man <code>ggT(e, (p-1)*(q-1)) = 1</code> ausrechnet.</p>
+		</div>
+		<div class="col-md-5">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title"><b>e</b> berechnen</h3>
+				</div>
+				<div class="panel-body">
+					<div style="display: inline-flex; margin-bottom: 12px; width: 100%;">
+						<div class="input-group" style="width: 48%;">
+							<span class="input-group-addon" id="calc-e-p-desc">p</span>
+							<input type="number" class="form-control" placeholder="p" aria-describedby="calc-e-p-desc" id="s3-p" value="5">
+						</div>&nbsp;&nbsp;&nbsp;
+						<div class="input-group" style="width: 48%;">
+							<span class="input-group-addon" id="calc-n-q-desc">q</span>
+							<input type="number" class="form-control" placeholder="q" aria-describedby="calc-e-q-desc" id="s3-q" value="11">
+						</div>
+					</div>
+					<div class="input-group" style="width: 100%; margin-bottom: 12px;">
+						<span class="input-group-addon" id="calc-e-start-desc">Einstiegszahl f&uuml;r e</span>
+						<input type="number" class="form-control" placeholder="Start" aria-describedby="calc-e-start-desc" id="s3-start" value="2">
+					</div>
+					<div class="input-group" style="width: 100%;">
+						<span class="input-group-addon" id="calc-e-e-desc">e</span>
+						<input type="number" class="form-control" placeholder="e" aria-describedby="calc-e-e-desc" id="s3-e">
+					</div>
+					<button type="button" class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="formCalcE();">Berechnen</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="page-header">
+		<h2>Schritt 4</h2>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<p>Dann wird die Zahl <code>d</code> berechnet. <code>e*d mod ((p-1)*(q-1)) = 1</code> Das Ergebnis aus <code>(p-1)*(q-1)</code> wird in diesem Beispiel <code>a</code> genannt.</p>
+			<p>Die Zahl <code>d</code> wird dein privater Schl&uuml;ssel sein.</p>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title"><b>a</b> berechnen</h3>
+				</div>
+				<div class="panel-body">
+					<div style="display: inline-flex; margin-bottom: 12px; width: 100%;">
+						<div class="input-group" style="width: 49%;">
+							<span class="input-group-addon" id="calc-a-p-desc">p</span>
+							<input type="number" class="form-control" placeholder="p" aria-describedby="calc-a-p-desc" id="s4-p" value="">
+						</div>&nbsp;&nbsp;&nbsp;
+						<div class="input-group" style="width: 49%;">
+							<span class="input-group-addon" id="calc-a-q-desc">q</span>
+							<input type="number" class="form-control" placeholder="q" aria-describedby="calc-d-a-desc" id="s4-q" value="">
+						</div>
+					</div>
+					<div class="input-group" style="width: 100%;">
+						<span class="input-group-addon" id="calc-a-a-desc">a</span>
+						<input type="number" class="form-control" placeholder="a" aria-describedby="calc-a-a-desc" id="s4-a">
+					</div>
+					<button type="button" class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="formCalcA();">Berechnen</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title"><b>d</b> berechnen</h3>
+				</div>
+				<div class="panel-body">
+					<div style="display: inline-flex; margin-bottom: 12px; width: 100%;">
+						<div class="input-group" style="width: 49%;">
+							<span class="input-group-addon" id="calc-d-e-desc">e</span>
+							<input type="number" class="form-control" placeholder="e" aria-describedby="calc-d-e-desc" id="s4-e" value="">
+						</div>&nbsp;&nbsp;&nbsp;
+						<div class="input-group" style="width: 49%;">
+							<span class="input-group-addon" id="calc-d-a-desc">a</span>
+							<input type="number" class="form-control" placeholder="a" aria-describedby="calc-d-a-desc" id="s4-d-a" value="">
+						</div>
+					</div>
+					<div class="input-group" style="width: 100%;">
+						<span class="input-group-addon" id="calc-d-d-desc">d</span>
+						<input type="number" class="form-control" placeholder="d" aria-describedby="calc-d-d-desc" id="s4-d">
+					</div>
+					<button type="button" class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="formCalcD();">Berechnen</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="page-header">
+		<h2>Zusammenfassung</h2>
+	</div>
+	<p>Fast fertig!</p>
+	<p>Dein privater Schl&uuml;ssel besteht aus der Zahl <code>d</code>. Dein &ouml;ffeltlicher Schl&uuml;ssel setzt sich aus den Zahlen <code>e</code> und <code>N</code> zusammen.</p>
+
+
+	<div class="page-header">
+		<h1>Ver- und entschl&uuml;sseln</h1>
+	</div>
+	<p>Nun, wo du dein RSA Schl&uuml;sselpaar erzeugt hast, kannst du den &ouml;ffentlichen Schl&uuml;ssel verteilen und deinen Freunden geben. Der private Schl&uuml;ssel bleibt geheim! Mit den Schl&uuml;sseln Texte verschl&uuml;sseln und wieder entschl&uuml;sseln kannst du im n&auml;chsten Teil machen.</p>
+
+
+	<div class="page-header">
+		<h2>Klartext mit &ouml;ffentlichem Schl&uuml;ssel verschl&uuml;sseln</h2>
+	</div>
+	<p>Um Texte zu verschl&uuml;sseln, musst du sie erst in Zahlen umwandeln. Dies geschieht in der Regen, indem man als Zahl den ASCII Wert des entsprechenden Buchstaben nimmt.</p>
+
+	<div class="row">
+		<div class="col-md-6">
+			<p>Um den Klartext zu verschl&uuml;sseln, wird er zun&auml;chst mit <code>e</code> potenziert, dann wird das Ergebnis <code>mod N</code> gerechnet.</p>
+			<p>Also <code>Geheimtext = Klartext<sup>e</sup> mod N</code></p>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Verschl&uuml;sseln</h3>
+				</div>
+				<div class="panel-body">
+					<div style="width: 100%; margin-bottom: 12px;">
+						<label id="enc-klar-desc">Klartext</label>
+						<textarea class="form-control" rows="3" placeholder="Klartext" id="enc-klar"></textarea>
+					</div>
+					<div style="display: inline-flex; margin-bottom: 12px; width: 100%;">
+						<div class="input-group" style="width: 49%;">
+							<span class="input-group-addon" id="enc-e-desc">e</span>
+							<input type="number" class="form-control" placeholder="e" aria-describedby="enc-e-desc" id="enc-e" value="">
+						</div>&nbsp;&nbsp;&nbsp;
+						<div class="input-group" style="width: 49%;">
+							<span class="input-group-addon" id="enc-n-desc">N</span>
+							<input type="number" class="form-control" placeholder="N" aria-describedby="enc-n-desc" id="enc-n" value="">
+						</div>
+					</div>
+					<label for="enc-geheim">Geheimtext</label>
+					<textarea class="form-control" rows="3" id="enc-geheim" placeholder="Geheimtext"></textarea>
+					<button type="button" class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="formEnc();">Verschl&uuml;sseln</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="page-header">
+		<h2>Geheimtext mit privatem Schl&uuml;ssel entschl&uuml;sseln</h2>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<p>Um Texte zu entschl&uuml;sseln, die vorher mit deinem &ouml;ffentlichen Schl&uuml;ssel verschl&uuml;sselt wurden, zu entschl&uuml;sseln, musst du zuerst den Geheimtext mit <code>d</code> potenzieren und dann <code>mod N</code> nehmen.</p>
+			<p>Also <code>Klartext = Geheimtext<sup>d</sup> mod N</code></p>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Entschl&uuml;sseln</h3>
+				</div>
+				<div class="panel-body">
+					<div style="width: 100%; margin-bottom: 12px;">
+						<label id="dec-geheim-desc">Geheim</label>
+						<textarea class="form-control" rows="3" placeholder="Geheimtext" id="dec-geheim"></textarea>
+					</div>
+					<div style="display: inline-flex; margin-bottom: 12px; width: 100%;">
+						<div class="input-group" style="width: 49%;">
+							<span class="input-group-addon" id="dec-d-desc">d</span>
+							<input type="number" class="form-control" placeholder="d" aria-describedby="dec-d-desc" id="dec-d" value="">
+						</div>&nbsp;&nbsp;&nbsp;
+						<div class="input-group" style="width: 49%;">
+							<span class="input-group-addon" id="dec-n-desc">N</span>
+							<input type="number" class="form-control" placeholder="N" aria-describedby="dec-n-desc" id="dec-n" value="">
+						</div>
+					</div>
+					<label for="dec-klar">Geheimtext</label>
+					<textarea class="form-control" rows="3" id="dec-klar" placeholder="Klartext"></textarea>
+					<button type="button" class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="formDec();">Entschl&uuml;sseln</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-header">
+		<h3>Feedback</h3>
+	</div>
+	<p>Falls du Feedback, Verbesserungsvorschl&auml;ge oder Korrekturen hast, kannst du mir gerne eine Mail an <img src="/footer.jpg" width="106" height="15"> schreiben.</p>
+	<br><br><br>
 
 </div>
 <script type="text/javascript" src="/js/navbar.js"></script>
