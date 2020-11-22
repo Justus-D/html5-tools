@@ -1,0 +1,18 @@
+{
+	"info":{
+		"navbar_title":"Tools",
+		"navbar_title_href":"/"
+	},
+	"pages":[
+		{
+			"title":"Home",
+			"href":"/",
+			"id":"home"
+		},
+		{
+			"title":"RSA",
+			"href":"/rsa/",
+			"id":"rsa"
+		}
+	]
+}

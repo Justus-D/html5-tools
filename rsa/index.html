@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RSA Schritt-f&uuml;r-Schritt</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand" id="navbar-title">Tools</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right" id="navbar-links">
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container" role="main">
+	<div class="jumbotron">
+		<h1>RSA</h1>
+		<p>Mit diesem Tool l&auml;sst sich die RSA Verschl&uuml;sselung Schritt-f&uuml;r-Schritt durchf&uuml;hren.</p>
+	</div>
+
+
+	<div class="page-header">
+		<h2>Schritt 1</h2>
+	</div>
+
+	<p>Als erstes m&uuml;ssen die zwei unterschiedlichen Primzahlen <b>p</b> und <b>q</b> ausgew&auml;hlt werden.</p>
+	<div>
+		<div class="row">
+			<div class="form-group col-md-4 has-warning" id="p-div">
+				<div class="input-group">
+					<span class="input-group-addon">p</span>
+					<input type="number" class="form-control" placeholder="Primzahl" aria-describedby="p-help" id="p-input" onload="checkPQ('p')" onkeyup="checkPQ('p')" pattern="[0-9]">
+				</div>
+				<label class="help-block" id="p-help">Gib eine Primzahl ein.</label>
+			</div>
+			<div class="form-group col-md-4 has-warning" id="q-div">
+				<div class="input-group">
+					<span class="input-group-addon">q</span>
+					<input type="number" class="form-control" placeholder="Primzahl" aria-describedby="q-help" id="q-input" onload="checkPQ('q')" onkeyup="checkPQ('q')" pattern="[0-9]">
+				</div>
+				<label class="help-block" id="q-help">Gib eine Primzahl ein.</label>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Primzahlengenerator</h3>
+					</div>
+					<div class="panel-body">
+						<div style="display: inline-flex; margin-bottom: 12px;">
+							<div class="input-group" style="width: 100%;">
+								<span class="input-group-addon" id="prime-gen-start-desc">Start</span>
+								<input type="number" class="form-control" placeholder="5" aria-describedby="prime-gen-start-desc" id="prime-gen-start-input">
+							</div>&nbsp;&nbsp;&nbsp;
+							<div class="input-group" style="width: 100%;">
+								<span class="input-group-addon" id="prime-gen-anzahl-desc">Anzahl</span>
+								<input type="number" class="form-control" placeholder="2" aria-describedby="prime-gen-anzahl-desc" id="prime-gen-anzahl-input">
+							</div>
+						</div>
+						<textarea class="form-control" rows="3" id="prime-gen-output" placeholder="5&#10;7"></textarea>
+						<button type="button" class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="genPrimeForm();">Generieren</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="page-header">
+		<h2>Schritt 2</h2>
+	</div>
+	<p>Als n&auml;chstes berechnen wir die Zahl <b>n</b>, indem wir die Zahlen <b>p</b> und <b>q</b> multiplizieren.</p>
+
+	<p>Nun wird die Zahl e erzeugt. Dazu sucht man, wann der gr&ouml;&szlig;te gemeinsame Teiler von Phi(n) = 1 ist.</p>
+
+
+</div>
+<script type="text/javascript" src="/js/navbar.js"></script>
+<script type="text/javascript" src="rsa.js"></script>
+<script type="text/javascript">
+	populateNavbar('rsa');
+</script>
+</body>
+</html>
