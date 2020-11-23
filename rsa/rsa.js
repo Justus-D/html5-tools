@@ -218,7 +218,7 @@ function bigEnc(e, N, klar) {
 }
 
 function formEnc() {
-	document.getElementById('enc-geheim').value = enc(document.getElementById('enc-e').value, document.getElementById('enc-n').value, document.getElementById('enc-klar').value);
+	document.getElementById('enc-geheim').value = bigEnc(document.getElementById('enc-e').value, document.getElementById('enc-n').value, document.getElementById('enc-klar').value);
 }
 
 function dec(d, N, geheim) {
