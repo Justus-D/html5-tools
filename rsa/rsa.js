@@ -213,14 +213,22 @@ function enc(e, N, klar) {
 	return (klar**e) % N;
 }
 
+function bigEnc(e, N, klar) {
+	return bigInt(klar).pow(e).mod(N);
+}
+
 function formEnc() {
-	document.getElementById('enc-geheim').value = enc(Number(document.getElementById('enc-e').value), Number(document.getElementById('enc-n').value), Number(document.getElementById('enc-klar').value));
+	document.getElementById('enc-geheim').value = enc(document.getElementById('enc-e').value, document.getElementById('enc-n').value, document.getElementById('enc-klar').value);
 }
 
 function dec(d, N, geheim) {
 	return (geheim**d) % N;
 }
 
+function bigDec(d, N, geheim) {
+	return bigInt(geheim).pow(d).mod(N).toString();
+}
+
 function formDec() {
-	document.getElementById('dec-klar').value = dec(Number(document.getElementById('dec-d').value), Number(document.getElementById('dec-n').value), Number(document.getElementById('dec-geheim').value));
+	document.getElementById('dec-klar').value = dec(document.getElementById('dec-d').value, document.getElementById('dec-n').value, document.getElementById('dec-geheim').value);
 }
