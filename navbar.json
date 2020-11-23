@@ -13,6 +13,11 @@
 			"title":"RSA",
 			"href":"/rsa/",
 			"id":"rsa"
+		},
+		{
+			"title":"Primzahlen",
+			"href":"/prime/",
+			"id":"prime"
 		}
 	]
 }
