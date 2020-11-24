@@ -196,37 +196,98 @@ function calcA(tp, tq) {
 }
 
 function formCalcA() {
+	if (document.getElementById('s4-p').value == '' || document.getElementById('s4-q').value == '') {
+		return false;
+	}
 	document.getElementById('s4-a').value = calcA(Number(document.getElementById('s4-p').value), Number(document.getElementById('s4-q').value));
 	populateA();
+	return true;
 }
 
 function formCalcE() {
 	document.getElementById('s3-e').value = calcE(Number(document.getElementById('s3-p').value), Number(document.getElementById('s3-q').value), Number(document.getElementById('s3-start').value));
 	populateE();
+	return true;
 }
 
 function formCalcD() {
+	if (document.getElementById('s4-e').value == '') {
+		if (!formCalcE()) {
+			return false;
+		}
+	}
+	if (document.getElementById('s4-d-a').value == '') {
+		if (!formCalcA()) {
+			return false;
+		}
+	}
 	document.getElementById('s4-d').value = calcD(Number(document.getElementById('s4-e').value), Number(document.getElementById('s4-d-a').value));
 }
 
-function enc(e, N, klar) {
+// encrypt
+function enc(e, N, klar) { // Native JS
 	return (klar**e) % N;
 }
 
-function bigEnc(e, N, klar) {
-	return bigInt(klar).pow(e).mod(N);
+function bigEnc(e, N, klar) { // BigInteger
+	return bigInt(klar).pow(e).mod(N).toString(); // slow
+	return bigInt(klar).modPow(e, N).toString(); // fast
 }
 
 function formEnc() {
 	document.getElementById('enc-geheim').value = bigEnc(document.getElementById('enc-e').value, document.getElementById('enc-n').value, document.getElementById('enc-klar').value);
 }
 
-function dec(d, N, geheim) {
+function checkEncKlar() {
+	if (!( bigInt(document.getElementById('enc-klar').value).lesser(document.getElementById('enc-n').value) )) {
+		document.getElementById('enc-form-klar').classList.remove('has-error');
+		document.getElementById('enc-form-klar').classList.add('has-error');
+		document.getElementById('enc-alert-skel').innerHTML = '<div class="alert alert-danger alert-dismissible" role="alert" style="margin-top: 12px; margin-bottom: 0;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Der <strong>Klartext</strong> darf nicht gr&ouml;&szlig;er als <strong>N</strong> sein!</div>'
+		return false;
+	}
+	else {
+		document.getElementById('enc-form-klar').classList.remove('has-error');
+		document.getElementById('enc-alert-skel').innerHTML = '';
+		return true;
+	}
+}
+document.getElementById('enc-klar').addEventListener("change", function() {
+	checkEncKlar();
+});
+document.getElementById('enc-n').addEventListener("change", function() {
+	checkEncKlar();
+});
+
+function checkDecGeheim() {
+	if (!( bigInt(document.getElementById('dec-geheim').value).lesser(document.getElementById('dec-n').value) )) {
+		document.getElementById('dec-form-geheim').classList.remove('has-error');
+		document.getElementById('dec-form-geheim').classList.add('has-error');
+		document.getElementById('dec-alert-skel').innerHTML = '<div class="alert alert-danger alert-dismissible" role="alert" style="margin-top: 12px; margin-bottom: 0;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Der <strong>Geheimtext</strong> darf nicht gr&ouml;&szlig;er als <strong>N</strong> sein!</div>'
+		return false;
+	}
+	else {
+		document.getElementById('dec-form-geheim').classList.remove('has-error');
+		document.getElementById('dec-alert-skel').innerHTML = '';
+		return true;
+	}
+}
+
+document.getElementById('dec-geheim').addEventListener("change", function() {
+	checkDecGeheim();
+});
+document.getElementById('dec-n').addEventListener("change", function() {
+	checkDecGeheim();
+});
+
+
+// decrypt
+function dec(d, N, geheim) { // Native JS
 	return (geheim**d) % N;
 }
 
-function bigDec(d, N, geheim) {
-	return bigInt(geheim).pow(d).mod(N).toString();
+function bigDec(d, N, geheim) { // BigInteger
+	//return bigInt(geheim).pow(d).mod(N).toString(); // slow
+	return bigInt(geheim).modPow(d, N).toString(); // fast
 }
 
 function formDec() {

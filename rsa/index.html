@@ -3,14 +3,22 @@
 <head>
 	<title>RSA Schritt-f&uuml;r-Schritt</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+	<!-- Bootstrap CSS -->
+	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha512-Dop/vW3iOtayerlYAqCgkVr2aTr2ErwwTYOvRFUpzl2VhCMJyjQF0Q9TjUXIo6JhuM/3i0vVEt2e/7QQmnHQqw==" crossorigin="anonymous">
+
 	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha512-iy8EXLW01a00b26BaqJWaCmk9fJ4PsMdgNRqV96KwMPSH+blO82OHzisF/zQbRIIi8m0PiO10dpS0QxrcXsisw==" crossorigin="anonymous">
+
 	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+	<!--<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+	<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha512-oBTprMeNEKCnqfuqKd6sbvFzmFQtlXS3e0C/RGFV0hD6QzhHV+ODfaQbAlmY6/q0ubbwlAM/nCJjkrgA3waLzg==" crossorigin="anonymous"></script>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-static-top">
@@ -259,9 +267,9 @@
 					<h3 class="panel-title">Verschl&uuml;sseln</h3>
 				</div>
 				<div class="panel-body">
-					<div style="width: 100%; margin-bottom: 12px;">
-						<label id="enc-klar-desc">Klartext</label>
-						<textarea class="form-control" rows="3" placeholder="Klartext" id="enc-klar"></textarea>
+					<div class="form-group" style="width: 100%; margin-bottom: 12px;" id="enc-form-klar">
+						<label class="control-label" id="enc-klar-desc">Klartext</label>
+						<textarea class="form-control" rows="3" placeholder="Klartext" id="enc-klar" onkeyup="checkEncKlar()"></textarea>
 					</div>
 					<div style="display: inline-flex; margin-bottom: 12px; width: 100%;">
 						<div class="input-group" style="width: 49%;">
@@ -270,12 +278,13 @@
 						</div>&nbsp;&nbsp;&nbsp;
 						<div class="input-group" style="width: 49%;">
 							<span class="input-group-addon" id="enc-n-desc">N</span>
-							<input type="number" class="form-control" placeholder="N" aria-describedby="enc-n-desc" id="enc-n" value="">
+							<input type="number" class="form-control" placeholder="N" aria-describedby="enc-n-desc" id="enc-n" value="" onkeyup="checkEncKlar()">
 						</div>
 					</div>
 					<label for="enc-geheim">Geheimtext</label>
 					<textarea class="form-control" rows="3" id="enc-geheim" placeholder="Geheimtext"></textarea>
 					<button type="button" class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="formEnc();">Verschl&uuml;sseln</button>
+					<div id="enc-alert-skel"></div>
 				</div>
 			</div>
 		</div>
@@ -296,9 +305,9 @@
 					<h3 class="panel-title">Entschl&uuml;sseln</h3>
 				</div>
 				<div class="panel-body">
-					<div style="width: 100%; margin-bottom: 12px;">
-						<label id="dec-geheim-desc">Geheimtext</label>
-						<textarea class="form-control" rows="3" placeholder="Geheimtext" id="dec-geheim"></textarea>
+					<div class="form-group" style="width: 100%; margin-bottom: 12px;" id="dec-form-geheim">
+						<label class="control-label" id="dec-geheim-desc">Geheimtext</label>
+						<textarea class="form-control" rows="3" placeholder="Geheimtext" id="dec-geheim" onkeyup="checkDecGeheim()"></textarea>
 					</div>
 					<div style="display: inline-flex; margin-bottom: 12px; width: 100%;">
 						<div class="input-group" style="width: 49%;">
@@ -307,12 +316,13 @@
 						</div>&nbsp;&nbsp;&nbsp;
 						<div class="input-group" style="width: 49%;">
 							<span class="input-group-addon" id="dec-n-desc">N</span>
-							<input type="number" class="form-control" placeholder="N" aria-describedby="dec-n-desc" id="dec-n" value="">
+							<input type="number" class="form-control" placeholder="N" aria-describedby="dec-n-desc" id="dec-n" value="" onkeyup="checkDecGeheim()">
 						</div>
 					</div>
 					<label for="dec-klar">Klartext</label>
 					<textarea class="form-control" rows="3" id="dec-klar" placeholder="Klartext"></textarea>
 					<button type="button" class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="formDec();">Entschl&uuml;sseln</button>
+					<div id="dec-alert-skel"></div>
 				</div>
 			</div>
 		</div>
@@ -326,8 +336,9 @@
 
 </div>
 <script type="text/javascript" src="/js/navbar.js"></script>
-<script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script>
-<script type="text/javascript" src="rsa.js?v=103"></script>
+<!--<script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/big-integer/1.6.48/BigInteger.min.js" integrity="sha512-ay3xvb1ky46pn2TD5cKikHiWLSakjf/rrwL7p5YYsC94WnMd3NlG4+ybWqu9Q8GbWiDun+grI45fMa7RO1m5Xg==" crossorigin="anonymous"></script>
+<script type="text/javascript" src="rsa.js?v=104"></script>
 <script type="text/javascript">
 	populateNavbar('rsa');
 </script>
