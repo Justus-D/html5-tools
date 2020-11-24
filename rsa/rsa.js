@@ -230,5 +230,5 @@ function bigDec(d, N, geheim) {
 }
 
 function formDec() {
-	document.getElementById('dec-klar').value = dec(document.getElementById('dec-d').value, document.getElementById('dec-n').value, document.getElementById('dec-geheim').value);
+	document.getElementById('dec-klar').value = bigDec(document.getElementById('dec-d').value, document.getElementById('dec-n').value, document.getElementById('dec-geheim').value);
 }
