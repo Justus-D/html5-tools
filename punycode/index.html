@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Punycode</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+	<!-- Punycode.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/punycode/1.4.1/punycode.min.js" integrity="sha512-YZlXEJ9dOHnIn3LXSS3RpbhAtTQZWw2VOywaMsC8p7/0DyGu0gEf0pFhkQtE/i4pQpgGUDY7cicb401Tf/5sRA==" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand" id="navbar-title">Tools</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right" id="navbar-links">
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container" role="main">
+	<div class="jumbotron">
+		<h1>Punycode</h1>
+		<p>Mit diesem Tool lassen sich Unicode Domains mit Punycode enkodieren.</p>
+	</div>
+<!--
+	<div class="page-header">
+		<h2>Punycode Konverter</h2>
+	</div>
+-->
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">Punycode Konverter</h3>
+		</div>
+		<div class="panel-body">
+			<div class="input-group" style="width: 100%">
+				<span class="input-group-addon" id="unicode-desc" style="width: 88px">Unicode</span>
+				<input type="text" class="form-control" placeholder="&auml;pfel.ml" aria-describedby="unicode-desc" id="unicode" onkeyup="toPuny()" value="&auml;pfel.ml">
+			</div>
+			<div class="input-group" style="width: 100%; margin-top: 12px">
+				<span class="input-group-addon" id="punycode-desc" style="width: 88px">Punycode</span>
+				<input type="text" class="form-control" placeholder="xn--pfel-koa.ml" aria-describedby="punycode-desc" id="punycode" onkeyup="toUni()" value="xn--pfel-koa.ml">
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="/js/navbar.js"></script>
+<script type="text/javascript">
+	populateNavbar('punycode');
+</script>
+<script type="text/javascript">
+	function toPuny() {
+		$("#punycode").val(punycode.toASCII($("#unicode").val()));
+	}
+	function toUni() {
+		$("#unicode").val(punycode.toUnicode($("#punycode").val()));
+	}
+</script>
+</body>
+</html>
