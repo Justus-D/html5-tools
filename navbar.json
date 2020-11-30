@@ -23,6 +23,11 @@
 			"title":"Punycode",
 			"href":"/punycode/",
 			"id":"punycode"
+		},
+		{
+			"title":"EXIF Remover",
+			"href":"/exif-remover/",
+			"id":"exif-remover"
 		}
 	]
 }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EXIF Remover</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha512-Dop/vW3iOtayerlYAqCgkVr2aTr2ErwwTYOvRFUpzl2VhCMJyjQF0Q9TjUXIo6JhuM/3i0vVEt2e/7QQmnHQqw==" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha512-iy8EXLW01a00b26BaqJWaCmk9fJ4PsMdgNRqV96KwMPSH+blO82OHzisF/zQbRIIi8m0PiO10dpS0QxrcXsisw==" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha512-oBTprMeNEKCnqfuqKd6sbvFzmFQtlXS3e0C/RGFV0hD6QzhHV+ODfaQbAlmY6/q0ubbwlAM/nCJjkrgA3waLzg==" crossorigin="anonymous"></script>
+	<!-- piexif.js -->
+	<script src="https://cdn.jsdelivr.net/npm/piexifjs@1.0.6/piexif.js" integrity="sha256-p5n27Mp50rOcFPONla2DkH9KoNBk3BenFIh30fW9LQ0=" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand" id="navbar-title">Tools</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right" id="navbar-links">
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container" role="main">
+	<div class="jumbotron">
+		<h1>EXIF Remover</h1>
+		<p>Mit diesem Tool lassen sich EXIF Metadaten, wie Standortdaten, aus Bildern entfernen.</p>
+	</div>
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">EXIF Remover</h3>
+		</div>
+		<div class="panel-body">
+			<div class="form-group">
+				<label for="original">Bild hochladen</label>
+				<input type="file" accept="image/*" id="original">
+				<p class="help-block">Lade das Bild hoch, von welchem du die Metadaten entfernen willst. Die Datei wird in deinem Browser verarbeitet und <strong>nicht</strong> &uuml;ber das Internet gesendet.</p>
+			</div>
+			<button type="button" class="btn btn-primary" onclick="imageDl()">Ohne EXIF-Daten herunterladen</button><br><br>
+			<img id="img" src="" class="img-responsive img-rounded" style="max-height: 140px;">
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript" src="/js/navbar.js"></script>
+<script type="text/javascript">
+	populateNavbar('exif-remover');
+</script>
+<script type="text/javascript">
+
+var image;
+var origname;
+var imageLoaded = false;
+
+function readFile() {
+	if (this.files && this.files[0]) {
+		var fr = new FileReader();
+		$(fr).on("load", function(e){
+			image = piexif.remove(e.target.result);
+			imageLoaded = true;
+			$("#img").attr("src", image);
+		});
+		origname = this.files[0].name;
+		fr.readAsDataURL(this.files[0]);
+	}
+}
+
+function dl(dataurl, filename) {
+	var a = document.createElement("a");
+	a.href = dataurl;
+	a.setAttribute("download", filename);
+	a.click();
+}
+
+function imageDl() {
+	if (imageLoaded) {
+		dl(image, "noEXIF_"+origname);
+	}
+}
+
+$("#original").on("change", readFile);
+
+</script>
+</body>
+</html>
