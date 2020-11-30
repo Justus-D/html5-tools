@@ -81,6 +81,7 @@ function readFile() {
 function dl(dataurl, filename) {
 	var a = document.createElement("a");
 	a.href = dataurl;
+	//a.setAttribute("target", "_BLANK");
 	a.setAttribute("download", filename);
 	a.click();
 }
