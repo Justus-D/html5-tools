@@ -55,7 +55,7 @@ function checkPQ(pq) {
 		div.classList.remove("has-error");
 		div.classList.add("has-warning");
 	}
-	else if (isPrime(parseInt(pqVal))) {
+	else if (isPrime(Number(pqVal))) {
 		if ((pq == 'p' && pqVal == q) || pq == 'q' && pqVal == p) {
 			help.innerHTML = "p und q d&uuml;rfen nicht gleich sein!";
 			div.classList.remove("has-success");
