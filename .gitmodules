@@ -1,0 +1,4 @@
+[submodule "vendor"]
+	path = vendor
+	url = https://github.com/Justus-D/html5-tools-vendor.git
+	branch = main
