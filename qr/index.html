@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QR Code Generator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/vendor/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha512-Dop/vW3iOtayerlYAqCgkVr2aTr2ErwwTYOvRFUpzl2VhCMJyjQF0Q9TjUXIo6JhuM/3i0vVEt2e/7QQmnHQqw==" crossorigin="anonymous">
+	<link rel="stylesheet" href="/vendor/libs/twitter-bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha512-iy8EXLW01a00b26BaqJWaCmk9fJ4PsMdgNRqV96KwMPSH+blO82OHzisF/zQbRIIi8m0PiO10dpS0QxrcXsisw==" crossorigin="anonymous">
+	<!--<script src="/vendor/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>-->
+	<script src="/vendor/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+	<script src="/vendor/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha512-oBTprMeNEKCnqfuqKd6sbvFzmFQtlXS3e0C/RGFV0hD6QzhHV+ODfaQbAlmY6/q0ubbwlAM/nCJjkrgA3waLzg==" crossorigin="anonymous"></script>
+	<script src="/vendor/libs/jquery.qrcode/1.0/jquery.qrcode.min.js" crossorigin="anonymous"></script>
+	<style type="text/css">
+		.center-img {
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body onload="initQR()">
+<nav class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand" id="navbar-title">Tools</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right" id="navbar-links">
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container" role="main">
+	<div class="jumbotron">
+		<h1>QR Code Generator</h1>
+		<p>Mit diesem Tool kannst du ganz einfach QR Codes generieren.</p>
+	</div>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">QR Code Generator</h3>
+		</div>
+		<div class="panel-body">
+			<div style="display: flex; margin-bottom: 15px;">
+				<div class="input-group" style="flex: 1;">
+					<span class="input-group-addon" id="qr-desc" style="">URL</span>
+					<input type="text" class="form-control" placeholder="https://tools.justus-d.de" aria-describedby="qr-desc" id="qr-input" onkeyup="genQR()">
+				</div>
+				<button class="btn btn-primary" onclick="genQR()" style="margin-left: 8px;">Generieren</button>
+			</div>
+			<div id="qr" style="width: 100%; text-align: center;"></div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/js/navbar.js"></script>
+<script type="text/javascript">
+	populateNavbar('qr');
+</script>
+<script type="text/javascript">
+function genQR() {
+	$("#qr").text("");
+	$("#qr").qrcode($("#qr-input").val());
+	$("#qr>canvas").addClass("img-responsive center-img");
+	makeImg();
+}
+function initQR() {
+	$("#qr").text("");
+	$("#qr").qrcode("https://tools.justus-d.de");
+	$("#qr>canvas").addClass("img-responsive center-img");
+	makeImg();
+}
+function makeImg() {
+	var canvas = $("#qr>canvas")[0];
+	var qr = document.getElementById("qr");
+	var qrImg = document.createElement("img");
+	qrImg.setAttribute("id", "qr-img");
+	qrImg.setAttribute("src", canvas.toDataURL());
+	$("#qr").text("");
+	qr.appendChild(qrImg);
+}
+</script>
+</body>
+</html>

@@ -28,6 +28,11 @@
 			"title":"EXIF Remover",
 			"href":"/exif-remover/",
 			"id":"exif-remover"
+		},
+		{
+			"title":"QR Code Generator",
+			"href":"/qr/",
+			"id":"qr"
 		}
 	]
 }
