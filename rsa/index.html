@@ -263,20 +263,20 @@
 				<div class="panel-body">
 					<div class="form-group" style="width: 100%; margin-bottom: 12px;" id="enc-form-klar">
 						<label class="control-label" id="enc-klar-desc">Klartext</label>
-						<textarea class="form-control" rows="3" placeholder="Klartext" id="enc-klar" onkeyup="checkEncKlar()"></textarea>
+						<textarea class="form-control" rows="3" placeholder="Klartext (Dezimalzahl)" id="enc-klar" onkeyup="checkEncKlar()"></textarea>
 					</div>
 					<div style="display: inline-flex; margin-bottom: 12px; width: 100%;">
 						<div class="input-group" style="width: 49%;">
 							<span class="input-group-addon" id="enc-e-desc">e</span>
-							<input type="number" class="form-control" placeholder="e" aria-describedby="enc-e-desc" id="enc-e" value="">
+							<input type="number" class="form-control" placeholder="e (Dezimalzahl)" aria-describedby="enc-e-desc" id="enc-e" value="">
 						</div>&nbsp;&nbsp;&nbsp;
 						<div class="input-group" style="width: 49%;">
 							<span class="input-group-addon" id="enc-n-desc">N</span>
-							<input type="number" class="form-control" placeholder="N" aria-describedby="enc-n-desc" id="enc-n" value="" onkeyup="checkEncKlar()">
+							<input type="number" class="form-control" placeholder="N (Dezimalzahl)" aria-describedby="enc-n-desc" id="enc-n" value="" onkeyup="checkEncKlar()">
 						</div>
 					</div>
 					<label for="enc-geheim">Geheimtext</label>
-					<textarea class="form-control" rows="3" id="enc-geheim" placeholder="Geheimtext"></textarea>
+					<textarea class="form-control" rows="3" id="enc-geheim" placeholder="Geheimtext (Dezimalzahl)"></textarea>
 					<button type="button" class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="formEnc();">Verschl&uuml;sseln</button>
 					<div id="enc-alert-skel"></div>
 				</div>
@@ -301,20 +301,20 @@
 				<div class="panel-body">
 					<div class="form-group" style="width: 100%; margin-bottom: 12px;" id="dec-form-geheim">
 						<label class="control-label" id="dec-geheim-desc">Geheimtext</label>
-						<textarea class="form-control" rows="3" placeholder="Geheimtext" id="dec-geheim" onkeyup="checkDecGeheim()"></textarea>
+						<textarea class="form-control" rows="3" placeholder="Geheimtext (Dezimalzahl)" id="dec-geheim" onkeyup="checkDecGeheim()"></textarea>
 					</div>
 					<div style="display: inline-flex; margin-bottom: 12px; width: 100%;">
 						<div class="input-group" style="width: 49%;">
 							<span class="input-group-addon" id="dec-d-desc">d</span>
-							<input type="number" class="form-control" placeholder="d" aria-describedby="dec-d-desc" id="dec-d" value="">
+							<input type="number" class="form-control" placeholder="d (Dezimalzahl)" aria-describedby="dec-d-desc" id="dec-d" value="">
 						</div>&nbsp;&nbsp;&nbsp;
 						<div class="input-group" style="width: 49%;">
 							<span class="input-group-addon" id="dec-n-desc">N</span>
-							<input type="number" class="form-control" placeholder="N" aria-describedby="dec-n-desc" id="dec-n" value="" onkeyup="checkDecGeheim()">
+							<input type="number" class="form-control" placeholder="N (Dezimalzahl)" aria-describedby="dec-n-desc" id="dec-n" value="" onkeyup="checkDecGeheim()">
 						</div>
 					</div>
 					<label for="dec-klar">Klartext</label>
-					<textarea class="form-control" rows="3" id="dec-klar" placeholder="Klartext"></textarea>
+					<textarea class="form-control" rows="3" id="dec-klar" placeholder="Klartext (Dezimalzahl)"></textarea>
 					<button type="button" class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="formDec();">Entschl&uuml;sseln</button>
 					<div id="dec-alert-skel"></div>
 				</div>
