@@ -1,1 +1,0 @@
-$.get("https://herrblauzahn.de/tools-page.php?page="+encodeURIComponent(window.location));
